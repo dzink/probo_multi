@@ -1,0 +1,21 @@
+assets:
+  - dev.sql.gz
+  - dev2.sql.gz
+steps:
+  - name: Site setup
+    plugin: DrupalMultisite
+    databaseGzipped: true
+    revertFeatures: true
+    databaseUpdates: true
+    clearCaches: true
+    settingsAppend: |
+      $conf['fetcher_environment'] = 'probo';
+    sites:
+      "probo_multi.vm":
+        database: dev.sql.gz
+        aliasSubdomain: probo_multi
+        siteFolder: probo_multi.vm
+      "probo_multi2.vm":
+        database: dev2.sql.gz
+        aliasSubdomain: probo_multi2
+        siteFolder: probo_multi2.vm
